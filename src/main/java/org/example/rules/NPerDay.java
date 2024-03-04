@@ -4,10 +4,10 @@ import org.example.notifications.Notification;
 
 import java.time.LocalDateTime;
 
-public class OnePerDay extends GenericRule {
+public class NPerDay extends GenericRule {
 
-    public OnePerDay() {
-        this.n = 1;
+    public NPerDay(Integer n) {
+        this.n = n;
     }
 
     @Override

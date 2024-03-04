@@ -5,9 +5,9 @@ import org.example.notifications.NotificationService;
 import org.example.notifications.NotificationServiceImpl;
 import org.example.notifications.NotificationTypesManager;
 import org.example.notifications.NotificationTypesManagerImpl;
+import org.example.rules.NPerDay;
 import org.example.rules.NPerHour;
 import org.example.rules.NPerMinute;
-import org.example.rules.OnePerDay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ class Solution {
 
         List<NotificationTypesManager> notificationTypesManagers = new ArrayList<>();
         notificationTypesManagers.add(new NotificationTypesManagerImpl(STATUS, new NPerMinute(2)));
-        notificationTypesManagers.add(new NotificationTypesManagerImpl(NEWS, new OnePerDay()));
+        notificationTypesManagers.add(new NotificationTypesManagerImpl(NEWS, new NPerDay(1)));
         notificationTypesManagers.add(new NotificationTypesManagerImpl(MARKETING, new NPerHour(3)));
 
         NotificationService service = new NotificationServiceImpl(new GatewayImpl(), notificationTypesManagers);
