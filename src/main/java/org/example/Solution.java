@@ -12,25 +12,27 @@ import org.example.rules.OnePerDay;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.notifications.NotificationService.*;
+
 class Solution {
     public static void main(String[] args) {
 
         List<NotificationTypesManager> notificationTypesManagers = new ArrayList<>();
-        notificationTypesManagers.add(new NotificationTypesManagerImpl(NotificationService.STATUS, new NPerMinute(2)));
-        notificationTypesManagers.add(new NotificationTypesManagerImpl(NotificationService.NEWS, new OnePerDay()));
-        notificationTypesManagers.add(new NotificationTypesManagerImpl(NotificationService.MARKETING, new NPerHour(3)));
+        notificationTypesManagers.add(new NotificationTypesManagerImpl(STATUS, new NPerMinute(2)));
+        notificationTypesManagers.add(new NotificationTypesManagerImpl(NEWS, new OnePerDay()));
+        notificationTypesManagers.add(new NotificationTypesManagerImpl(MARKETING, new NPerHour(3)));
 
         NotificationService service = new NotificationServiceImpl(new GatewayImpl(), notificationTypesManagers);
 
-        service.send(NotificationService.NEWS, "user", "news 1");
-        service.send(NotificationService.NEWS, "user", "news 2");
-        service.send(NotificationService.NEWS, "user", "news 3");
-        service.send(NotificationService.NEWS, "another user", "news 1");
-        service.send(NotificationService.STATUS, "user", "update 1");
-        service.send(NotificationService.MARKETING, "user", "marketing 1");
-        service.send(NotificationService.MARKETING, "user", "marketing 2");
-        service.send(NotificationService.MARKETING, "user", "marketing 3");
-        service.send(NotificationService.MARKETING, "user", "marketing 4");
+        service.send(NEWS, "user", "news 1");
+        service.send(NEWS, "user", "news 2");
+        service.send(NEWS, "user", "news 3");
+        service.send(NEWS, "another user", "news 1");
+        service.send(STATUS, "user", "update 1");
+        service.send(MARKETING, "user", "marketing 1");
+        service.send(MARKETING, "user", "marketing 2");
+        service.send(MARKETING, "user", "marketing 3");
+        service.send(MARKETING, "user", "marketing 4");
     }
 
 }
