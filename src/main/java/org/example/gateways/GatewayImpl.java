@@ -1,6 +1,4 @@
-package org.example.impl;
-
-import org.example.interfaces.Gateway;
+package org.example.gateways;
 
 public class GatewayImpl implements Gateway {
 

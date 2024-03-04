@@ -1,4 +1,4 @@
-package org.example.interfaces;
+package org.example.gateways;
 
 public interface Gateway {
 
