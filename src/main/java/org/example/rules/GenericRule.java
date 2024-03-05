@@ -15,14 +15,16 @@ public abstract class GenericRule implements RateLimitRule {
         Map<String, List<Notification>> notificationsRefreshed = new HashMap<>();
         notificationsPerUser.keySet().forEach(userId -> notificationsRefreshed.put(
                 userId,
-                filterOutdatedNotifications(notificationsPerUser, userId)
+                filterLastOutdatedNotifications(notificationsPerUser, userId)
         ));
         return notificationsRefreshed;
     }
 
-    private List<Notification> filterOutdatedNotifications(Map<String, List<Notification>> notificationsPerUser, String userId) {
+    private List<Notification> filterLastOutdatedNotifications(Map<String, List<Notification>> notificationsPerUser, String userId) {
         List<Notification> notifications = notificationsPerUser.getOrDefault(userId, new ArrayList<>());
-        notifications.removeAll(notifications.stream().filter(notification -> !this.meetsCondition(notification)).toList());
+        if(!this.meetsCondition(notifications.getLast())){
+            notifications.removeLast();
+        }
         return notifications;
     }
 

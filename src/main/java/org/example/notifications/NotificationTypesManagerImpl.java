@@ -30,7 +30,7 @@ public class NotificationTypesManagerImpl implements NotificationTypesManager {
 
     private Boolean register(Notification notification) {
         List<Notification> notifications = notificationsPerUser.getOrDefault(notification.getUserId(), new ArrayList<>());
-        notifications.add(notification);
+        notifications.addFirst(notification);
         notificationsPerUser.put(notification.getUserId(), notifications);
         return true;
     }
